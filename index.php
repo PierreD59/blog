@@ -17,19 +17,19 @@ $donnees = $reponse->fetchAll();
 foreach ($donnees as $donnee => $value) {
   ?>
 <div class="topic">
-<h2 class="title"><?= $value['title'] ?> </h2> <br />
-<p class="content"><?= $value['contents'] ?> </p><br />
-<div class="hours"><?= $value['date_create'] ?></div> <br />
-</div> <br />
+<h2 class="title"><?= nl2br(htmlspecialchars($value['title'])); ?> </h2>
+<p class="content"><?= nl2br(htmlspecialchars($value['contents'])); ?> </p>
+<div class="hours"><?= nl2br(htmlspecialchars($value['date_create'])) ?></div>
+</div>
 <?php
 $reponse->closeCursor();
 $reponse = $bdd->query('SELECT author, message, DATE_FORMAT(date_message, "%d/%m/%Y %Hh%imin%ss") AS date_message FROM message WHERE ticket_id=' . $value["id"] . ' ORDER BY id DESC LIMIT 5');
 $donnees = $reponse->fetchAll();
 foreach ($donnees as $donnee => $value) { ?>
 <div class="message">
-<p class="pseudo"><?= $value['author'] ?></p> <br />
-<p class="message"><?= $value['message'] ?></p> <br />
-<div class="hours"><?= $value['date_message'] ?></div>
-</div> <br />
+<p class="pseudo"><?= nl2br(htmlspecialchars($value['author'])) ?></p>
+<p class="message"><?= nl2br(htmlspecialchars($value['message'])) ?></p>
+<div class="hours"><?= nl2br(htmlspecialchars($value['date_message'])) ?></div>
+</div>
 <?php }
 } ?>

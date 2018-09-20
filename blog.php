@@ -14,10 +14,9 @@ catch(Exception $e)
 $title = $_POST['title'];
 $contents = $_POST['contents'];
 
-if(!empty($title) && !empty($contents))
+if(isset($title) AND !empty($title) AND isset($contents) AND !empty($contents))
 {
 $req = $bdd->prepare('INSERT INTO ticket(title, contents, date_create) VALUES(:title, :contents, NOW())');
-var_dump($req);
 $req->execute(array(
 
     'title' => $title,
@@ -35,7 +34,7 @@ $author = $_POST['author'];
 $message = $_POST['message'];
 $ticket_id = $_POST['ticket_id'];
 
-if(!empty($author) && !empty($message))
+if(isset($author) AND !empty($author) AND isset($message) AND !empty($message))
 {
   $req = $bdd->prepare('INSERT INTO message(author, message, ticket_id, date_message) VALUES(:author, :message, :ticket_id, NOW())');
   $req->execute(array(
